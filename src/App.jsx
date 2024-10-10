@@ -15,5 +15,6 @@ const App = () => {
     </>
   )
 }
+// new compenent added
 
 export default App
