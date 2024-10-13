@@ -1,9 +1,22 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import MainLayouts from './Layouts/MainLayouts'
+import JobPage from './pages/JobPage'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <div>Hello world!</div>,
+    element: <MainLayouts />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />, //whaever element is here goes to the outlet as per the path
+      },
+      {
+        path: '/jobs',
+        element: <JobPage />,
+      },
+    ],
   },
 ])
 
@@ -13,20 +26,4 @@ const App = () => {
 
 export default App
 
-// import Navbar from './components/Navbar'
-// import Hero from './components/Hero'
-// import HomeCards from './components/HomeCards'
-// import JobsListing from './components/JobsListing'
-// import ViewAllJobs from './components/ViewAllJobs'
-
-{
-  /* <>
-<Navbar />
-<Hero title="React jobs" subtitle="Become a react dev" />
-<HomeCards />
-<JobsListing />
-<ViewAllJobs />
-</> */
-}
-
-//1:22:48
+//1:34:20
