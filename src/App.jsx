@@ -6,7 +6,7 @@ import NotFound from './pages/NotFound'
 
 const router = createBrowserRouter([
   {
-    path: '/ok',
+    path: '/',
     element: <MainLayouts />,
     children: [
       {
