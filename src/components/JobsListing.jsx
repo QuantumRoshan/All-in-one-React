@@ -9,7 +9,10 @@ const JobsListing = ({ isHome = false }) => {
   useEffect(() => {
     try {
       const fetchJobs = async () => {
-        const res = await fetch('http://localhost:8000/jobs')
+        const url = isHome
+          ? 'http://localhost:8000/jobs?_limit=3'
+          : 'http://localhost:8000/jobs'
+        const res = await fetch(url)
         const data = await res.json() //takes the body from the res which is in json format and converts into array/object
         setJobs(data)
       }
@@ -19,7 +22,7 @@ const JobsListing = ({ isHome = false }) => {
     } finally {
       setLooding(false)
     }
-  }, [])
+  }, [isHome])
 
   return (
     <section className="bg-blue-50 px-4 py-10">
