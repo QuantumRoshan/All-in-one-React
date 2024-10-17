@@ -3,15 +3,13 @@ import { useEffect, useState } from 'react'
 import JobListing from './JobListing'
 import { PushSpinner } from 'react-spinners-kit'
 
-const JobsListing = ({ isHome = false }) => {
+const JobsListing = ({ isHome }) => {
   const [jobs, setJobs] = useState([])
-  const [loading, setLooding] = useState(true)
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     try {
       const fetchJobs = async () => {
-        const url = isHome
-          ? 'http://localhost:8000/jobs?_limit=3'
-          : 'http://localhost:8000/jobs'
+        const url = isHome ? '/api/jobs?_limit=3' : '/api/jobs'
         const res = await fetch(url)
         const data = await res.json() //takes the body from the res which is in json format and converts into array/object
         setJobs(data)
@@ -20,7 +18,7 @@ const JobsListing = ({ isHome = false }) => {
     } catch (error) {
       console.log('Could not fetch data', error)
     } finally {
-      setLooding(false)
+      setLoading(false)
     }
   }, [isHome])
 
@@ -47,7 +45,7 @@ const JobsListing = ({ isHome = false }) => {
 }
 
 JobsListing.propTypes = {
-  isHome: PropTypes.string.isRequired,
+  isHome: PropTypes.bool.isRequired,
 }
 
 export default JobsListing
